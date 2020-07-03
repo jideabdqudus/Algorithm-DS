@@ -17,7 +17,6 @@ function anagrams(stringA, stringB){
 module.exports = anagrams;
 
 
-
 // function anagrams(stringA, stringB) {
 //   const chars = {};
 
