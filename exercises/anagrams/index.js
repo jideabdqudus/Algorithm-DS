@@ -9,31 +9,14 @@
 //   anagrams('Hi there', 'Bye there') --> False
 
 function anagrams(stringA, stringB) {
-  const chars = {};
-
-  const newCharSet = {};
-
-  for (let char of stringA.replace(/[^\w]/g, "").toLowerCase()) {
-    chars[char] = chars[char] + 1 || 1;
-  }
-
-  for (let newchar of stringB.replace(/[^\w]/g, "").toLowerCase()) {
-    newCharSet[newchar] = newCharSet[newchar] + 1 || 1;
-  }
-
-  if (Object.keys(chars).length !== Object.keys(newCharSet).length) {
-    return false;
-  }
-  for (let char in chars) {
-    if (chars[char] !== newCharSet[char]) {
-      return false;
-    }
-  }
-
-  return true;
+  return cleanString(stringA) === cleanString(stringB);
 }
-
+function cleanString(str) {
+  return str.replace(/[^\w]/g, "").toLowerCase().split("").sort().join("");
+}
 module.exports = anagrams;
+
+//Stephen Solution 1
 
 // function anagrams(stringA, stringB) {
 //     const aCharMap = buildCharMap(stringA);
@@ -59,4 +42,31 @@ module.exports = anagrams;
 //     }
 
 //     return charMap;
+//   }
+
+//Qudus Solution
+
+// function anagrams(stringA, stringB) {
+//     const chars = {};
+
+//     const newCharSet = {};
+
+//     for (let char of stringA.replace(/[^\w]/g, "").toLowerCase()) {
+//       chars[char] = chars[char] + 1 || 1;
+//     }
+
+//     for (let newchar of stringB.replace(/[^\w]/g, "").toLowerCase()) {
+//       newCharSet[newchar] = newCharSet[newchar] + 1 || 1;
+//     }
+
+//     if (Object.keys(chars).length !== Object.keys(newCharSet).length) {
+//       return false;
+//     }
+//     for (let char in chars) {
+//       if (chars[char] !== newCharSet[char]) {
+//         return false;
+//       }
+//     }
+
+//     return true;
 //   }
