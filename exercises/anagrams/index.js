@@ -9,14 +9,23 @@
 //   anagrams('Hi there', 'Bye there') --> False
 
 function anagrams(stringA, stringB) {
-  const aCharMap = buildCharMap(stringA);
-  const bCharMap = buildCharMap(stringB);
+  const chars = {};
 
-  if (Object.keys(aCharMap).length !== Object.keys(bCharMap).length) {
+  const newCharSet = {};
+
+  for (let char of stringA.replace(/[^\w]/g, "").toLowerCase()) {
+    chars[char] = chars[char] + 1 || 1;
+  }
+
+  for (let newchar of stringB.replace(/[^\w]/g, "").toLowerCase()) {
+    newCharSet[newchar] = newCharSet[newchar] + 1 || 1;
+  }
+
+  if (Object.keys(chars).length !== Object.keys(newCharSet).length) {
     return false;
   }
-  for (let char in aCharMap) {
-    if (aCharMap[char] !== bCharMap[char]) {
+  for (let char in chars) {
+    if (chars[char] !== newCharSet[char]) {
       return false;
     }
   }
@@ -24,37 +33,30 @@ function anagrams(stringA, stringB) {
   return true;
 }
 
-function buildCharMap(str) {
-  const charMap = {};
-
-  for (let char of str.replace(/[^\w]/g, "").toLowerCase()) {
-    charMap[char] = charMap[char] + 1 || 1;
-  }
-
-  return charMap;
-}
-
 module.exports = anagrams;
 
 // function anagrams(stringA, stringB) {
-//   const chars = {};
+//     const aCharMap = buildCharMap(stringA);
+//     const bCharMap = buildCharMap(stringB);
 
-//   const newCharSet = {};
+//     if (Object.keys(aCharMap).length !== Object.keys(bCharMap).length) {
+//       return false;
+//     }
+//     for (let char in aCharMap) {
+//       if (aCharMap[char] !== bCharMap[char]) {
+//         return false;
+//       }
+//     }
 
-//   for (let char of stringA.replace(/[^\w]/g, "").toLowerCase()) {
-//     chars[char] = chars[char] + 1 || 1;
-//   }
-
-//   for (let newchar of stringB.replace(/[^\w]/g, "").toLowerCase()) {
-//     newCharSet[newchar] = newCharSet[newchar] + 1 || 1;
-//   }
-
-//   if (
-//     Object.keys(chars).length !== Object.keys(newCharSet).length &&
-//     chars !== newCharSet
-//   ) {
-//     return false;
-//   } else {
 //     return true;
 //   }
-// }
+
+//   function buildCharMap(str) {
+//     const charMap = {};
+
+//     for (let char of str.replace(/[^\w]/g, "").toLowerCase()) {
+//       charMap[char] = charMap[char] + 1 || 1;
+//     }
+
+//     return charMap;
+//   }
