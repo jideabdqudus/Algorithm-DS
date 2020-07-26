@@ -8,17 +8,26 @@
 //   vowels('Why?') --> 0
 
 function vowels(str) {
-  let count = 0;
-
-  word = ["a", "e", "i", "o", "u"];
-
-  for (let char of str.toLowerCase()) {
-    if (word.includes(char)) {
-      count++;
-    }
-  }
-
-  return count;
+  const matches = str.match(/[aeiou]/gi)
+  return matches ? matches.length : 0
 }
 
 module.exports = vowels;
+
+
+
+//Solution 1
+
+// function vowels(str) {
+//     let count = 0; //Initialize Count
+  
+//     word = ["a", "e", "i", "o", "u"]; //Set word array containing the vowels
+  
+//     for (let char of str.toLowerCase()) {
+//       //turn str to the lowercase, for each character in str, check if it's included in the word array and increase the count by 1
+//       if (word.includes(char)) {
+//         count++;
+//       }
+//     }
+//     return count;
+//   }
